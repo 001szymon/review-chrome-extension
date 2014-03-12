@@ -5,9 +5,9 @@
 
   "browser_action": {
     "default_icon": "images/review-icon.png",
-    "default_popup": "html/popup.html"
+    "default_popup": "popup/index.html"
   },
 
-  "options_page": "html/options.html",
+  "options_page": "options/index.html",
   "manifest_version": 2
 }
