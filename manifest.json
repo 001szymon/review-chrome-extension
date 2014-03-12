@@ -4,7 +4,8 @@
   "version": "0.1.0",
 
   "browser_action": {
-    "default_icon": "images/review-icon.png"
+    "default_icon": "images/review-icon.png",
+    "default_popup": "html/popup.html"
   },
   "manifest_version": 2
 }
