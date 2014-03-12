@@ -7,5 +7,7 @@
     "default_icon": "images/review-icon.png",
     "default_popup": "html/popup.html"
   },
+
+  "options_page": "html/options.html",
   "manifest_version": 2
 }
