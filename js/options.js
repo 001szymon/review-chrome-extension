@@ -1,30 +1,26 @@
 function saveOptions() {
-  var appUrlInput = document.getElementsByName('app_url')[0];
-  var appTokenInput = document.getElementsByName('app_token')[0];
-
-  var appUrl = appUrlInput.value;
-  var appToken = appTokenInput.value;
-
-  if(!!appUrl) {
-    localStorage["appUrl"] = appUrl;
-  }
-  if(!!appToken) {
-    localStorage["appToken"] = appToken;
-  }
+  optionFromTextInputToLocalStorage('app_url', 'appUrl');
+  optionFromTextInputToLocalStorage('app_token', 'appToken');
 }
 
 function restoreOptions() {
-  var appUrl = localStorage["appUrl"];
-  var appToken = localStorage["appToken"];
+  optionFromLocalStorageToTextInput('app_url', 'appUrl');
+  optionFromLocalStorageToTextInput('app_token', 'appToken');
+}
 
-  var appUrlInput = document.getElementsByName('app_url')[0];
-  var appTokenInput = document.getElementsByName('app_token')[0];
-
-  if(!!appUrl) {
-    appUrlInput.value = appUrl;
+function optionFromTextInputToLocalStorage(inputName, storageKey) {
+  var input = document.getElementsByName(inputName)[0];
+  var value = input.value;
+  if(!!value) {
+    localStorage[storageKey] = value;
   }
-  if(!!appToken) {
-    appTokenInput.value = appToken;
+}
+
+function optionFromLocalStorageToTextInput(inputName, storageKey) {
+  var value = localStorage[storageKey];
+  var input = document.getElementsByName(inputName)[0];
+  if(!!value) {
+    input.value = value;
   }
 }
 
