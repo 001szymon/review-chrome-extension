@@ -27,6 +27,13 @@ function getJSON(url, successCallback) {
   xhr.send();
 }
 
+function print(elId, text) {
+  document.getElementById(elId).textContent = text;
+}
+
 getJSON(apiUrl(), function(resp){
-  document.getElementById('content').textContent = resp;
+  print('project_name', resp["project"]["name"]);
+  print('deadline', resp["deadline"]);
+  print('not_reviewed', resp["commits"]["by_state"]["not_reviewed"]);
+  print('auto_rejected', resp["commits"]["by_state"]["auto_rejected"]);
 });
