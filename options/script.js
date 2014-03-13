@@ -1,6 +1,7 @@
 function saveOptions() {
   optionFromTextInputToLocalStorage('app_url', 'appUrl');
   optionFromTextInputToLocalStorage('app_token', 'appToken');
+  setupPermissions();
 }
 
 function restoreOptions() {
@@ -22,6 +23,21 @@ function optionFromLocalStorageToTextInput(inputName, storageKey) {
   if(!!value) {
     input.value = value;
   }
+}
+
+function setupPermissions() {
+  var appUrl = localStorage["appUrl"];
+  if (!!appUrl) {
+    addPermissionsForHost(appUrl);
+  }
+}
+
+function addPermissionsForHost(host) {
+  chrome.permissions.request({
+    "origins": [
+      host
+    ]
+  });
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);

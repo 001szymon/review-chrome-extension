@@ -17,6 +17,8 @@
     "default_popup": "popup/index.html"
   },
 
+  "optional_permissions": ["http://*/", "https://*/"],
+
   "options_page": "options/index.html",
   "manifest_version": 2
 }
