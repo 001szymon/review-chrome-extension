@@ -33,6 +33,9 @@ function setupPermissions() {
 }
 
 function addPermissionsForHost(host) {
+  if (host[host.length-1] !== '/') {
+    host = host +'/';
+  }
   chrome.permissions.request({
     "origins": [
       host

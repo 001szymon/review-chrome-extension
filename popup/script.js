@@ -8,8 +8,11 @@ function appToken(){
 
 function apiUrl(){
   var host = appUrl();
+  if (host[host.length-1] !== '/') {
+    host = host +'/';
+  }
   var token = appToken();
-  return host + "/api/v1/review_check?token=" + token;
+  return host + "api/v1/review_check?token=" + token;
 }
 
 function getJSON(url, successCallback) {
