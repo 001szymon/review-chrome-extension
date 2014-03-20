@@ -13,7 +13,7 @@ How to build
 You need to have npm installed.
 
 ```sh
-make setup
+make setup # installs the npm modules and other dependencies
 make
 ```
 
