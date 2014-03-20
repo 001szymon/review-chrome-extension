@@ -1,22 +1,21 @@
 class OptionsController
-  saveOptions: =>
+  saveOptions: ->
     @optionFromTextInputToLocalStorage('app_url', 'appUrl')
     @optionFromTextInputToLocalStorage('app_token', 'appToken')
     @setupPermissions()
 
-  restoreOptions: =>
+  restoreOptions: ->
     @optionFromLocalStorageToTextInput('app_url', 'appUrl')
     @optionFromLocalStorageToTextInput('app_token', 'appToken')
 
   optionFromTextInputToLocalStorage: (inputName, storageKey)->
-    input = document.getElementsByName(inputName)[0]
-    value = input.value
+    value = $("[name='#{inputName}']").val()
     localStorage[storageKey] = value if value?
 
   optionFromLocalStorageToTextInput: (inputName, storageKey)->
     value = localStorage[storageKey]
-    input = document.getElementsByName(inputName)[0]
-    input.value = value if value?
+    input = $("[name='#{inputName}']")
+    input.val(value) if value?
 
   setupPermissions: ->
     appUrl = localStorage["appUrl"]
@@ -28,8 +27,8 @@ class OptionsController
     chrome.permissions.request(origins: [ host ])
 
   perform: ->
-    document.addEventListener('DOMContentLoaded', @restoreOptions)
-    document.querySelector('#save').addEventListener('click', @saveOptions)
+    @restoreOptions()
+    $('#save').on('click', => @saveOptions())
 
 window.OptionsController = OptionsController
 window.controller = new OptionsController()
