@@ -12,9 +12,15 @@ manifest_build_file := build/manifest.json
 html_source_files := $(wildcard src/**/*.html)
 html_build_files := $(html_source_files:src/%.html=build/%.html)
 
-.PHONY: all setup clean coffee images manifest html
+jquery_source_file := node_modules/jquery/dist/jquery.js
+jquery_build_file := build/vendor/jquery.js
 
-all: coffee images manifest html
+libraries_source_files := $(jquery_source_file)
+libraries_build_files := $(jquery_build_file)
+
+.PHONY: all setup clean coffee images manifest html libraries
+
+all: coffee images manifest html libraries
 
 setup:
 	npm install
@@ -30,6 +36,8 @@ manifest: $(manifest_build_file)
 
 html: $(html_build_files)
 
+libraries: $(libraries_build_files)
+
 build/%.js: src/%.coffee
 	$(coffee) -co $(dir $@) $<
 
@@ -43,4 +51,8 @@ $(manifest_build_file): $(manifest_source_file)
 
 build/%.html: src/%.html
 	mkdir -pv $(dir $@)
+	cp $< $@
+
+$(jquery_build_file): $(jquery_source_file)
+	mkdir -pv build/vendor/
 	cp $< $@
