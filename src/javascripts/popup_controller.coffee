@@ -20,5 +20,3 @@ class PopupController
       $('#auto_rejected').text(resp["commits"]["by_state"]["auto_rejected"])
 
 window.PopupController = PopupController
-window.controller = new PopupController()
-window.controller.perform()

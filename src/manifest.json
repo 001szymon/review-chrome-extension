@@ -14,11 +14,11 @@
      "19": "images/review-icon-19x19.png",
      "38": "images/review-icon-38x38.png"
     },
-    "default_popup": "popup/index.html"
+    "default_popup": "apps/popup/index.html"
   },
 
   "optional_permissions": ["http://*/", "https://*/"],
 
-  "options_page": "options/index.html",
+  "options_page": "apps/options/index.html",
   "manifest_version": 2
 }

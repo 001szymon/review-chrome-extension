@@ -31,5 +31,3 @@ class OptionsController
     $('#save').on('click', => @saveOptions())
 
 window.OptionsController = OptionsController
-window.controller = new OptionsController()
-window.controller.perform()
