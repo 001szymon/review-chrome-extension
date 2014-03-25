@@ -101,9 +101,9 @@ build/%.html: src/%.html
 	cp $< $@
 
 $(jquery_build_file): $(jquery_source_file)
-	mkdir -pv build/vendor/
+	mkdir -pv build/vendor
 	cp $< $@
 
 $(jstest_build_file): $(jstest_source_file)
-	mkdir -pv build/vendor/
+	mkdir -pv build/tests
 	cp $< $@
