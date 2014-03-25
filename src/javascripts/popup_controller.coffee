@@ -10,13 +10,29 @@ class PopupController
     if host[host.length-1] != '/'
       host += '/'
     token = @appToken()
-    "#{host}api/v1/review_check?token=#{token}"
+    "#{host}api/v1/trade_check?token=#{token}"
+
+  projectToTableRow: (project)->
+    $tableRow = $('<tr>')
+    $.each [
+      project['name'],
+      project['expiration_date'],
+      project['unreviewed_commits']['by_state']['pending'],
+      project['unreviewed_commits']['by_state']['auto_rejected'],
+    ], (_, value)=>
+      $tableRow.append @cellFactory(value)
+    $tableRow
+
+  cellFactory: (content)->
+    $('<td>').text(content)
+
+  renderProjects: (projects)->
+    $tableBody = $('tbody')
+    $.each projects, (_, project)=>
+      $tableBody.append(@projectToTableRow(project))
 
   perform: ->
-    $.getJSON @apiUrl(), (resp)->
-      $('#project_name').text(resp["project"]["name"])
-      $('#deadline').text(resp["deadline"])
-      $('#not_reviewed').text(resp["commits"]["by_state"]["not_reviewed"])
-      $('#auto_rejected').text(resp["commits"]["by_state"]["auto_rejected"])
+    $.getJSON @apiUrl(), (resp)=>
+      @renderProjects(resp['projects'])
 
 window.PopupController = PopupController
