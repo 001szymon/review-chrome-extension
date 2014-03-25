@@ -1,29 +1,29 @@
 class OptionsController
+
+  constructor: (options)->
+    @optionsStorage = options?.optionsStorage || new OptionsStorage()
+
   saveOptions: ->
-    @optionFromTextInputToLocalStorage('app_url', 'appUrl')
-    @optionFromTextInputToLocalStorage('app_token', 'appToken')
+    @optionsStorage.setAppUrl @fromTextInput('app_url')
+    @optionsStorage.setAppToken @fromTextInput('app_token')
     @setupPermissions()
 
   restoreOptions: ->
-    @optionFromLocalStorageToTextInput('app_url', 'appUrl')
-    @optionFromLocalStorageToTextInput('app_token', 'appToken')
+    @toTextInput 'app_url', @optionsStorage.appUrl()
+    @toTextInput 'app_token', @optionsStorage.appToken()
 
-  optionFromTextInputToLocalStorage: (inputName, storageKey)->
-    value = $("[name='#{inputName}']").val()
-    localStorage[storageKey] = value if value?
+  fromTextInput: (inputName)->
+    $("[name='#{inputName}']").val()
 
-  optionFromLocalStorageToTextInput: (inputName, storageKey)->
-    value = localStorage[storageKey]
+  toTextInput: (inputName, value)->
     input = $("[name='#{inputName}']")
     input.val(value) if value?
 
   setupPermissions: ->
-    appUrl = localStorage["appUrl"]
+    appUrl = @optionsStorage.appUrl()
     @addPermissionsForHost(appUrl) if appUrl?
 
   addPermissionsForHost: (host) ->
-    if host[host.length-1] != '/'
-      host += '/'
     chrome.permissions.request(origins: [ host ])
 
   perform: ->

@@ -1,15 +1,11 @@
 class PopupController
-  appUrl: ->
-    localStorage["appUrl"]
 
-  appToken: ->
-    localStorage["appToken"]
+  constructor: (options)->
+    @optionsStorage = options?.optionsStorage || new OptionsStorage()
 
   apiUrl: ->
-    host = @appUrl()
-    if host[host.length-1] != '/'
-      host += '/'
-    token = @appToken()
+    host = @optionsStorage.appUrl()
+    token = @optionsStorage.appToken()
     "#{host}api/v1/trade_check?token=#{token}"
 
   projectToTableRow: (project)->
