@@ -1,12 +1,7 @@
 class PopupController
 
   constructor: (options)->
-    @optionsStorage = options?.optionsStorage || new OptionsStorage()
-
-  apiUrl: ->
-    host = @optionsStorage.appUrl()
-    token = @optionsStorage.appToken()
-    "#{host}api/v1/trade_check?token=#{token}"
+    @urlBuilder = options?.urlBuilder || new UrlBuilder()
 
   projectToTableRow: (project)->
     $tableRow = $('<tr>')
@@ -32,7 +27,7 @@ class PopupController
       $tableBody.append(@projectToTableRow(project))
 
   perform: ->
-    $.getJSON @apiUrl(), (resp)=>
+    $.getJSON @urlBuilder.tradeCheckUrl(), (resp)=>
       @renderProjects(resp['projects'])
 
 window.PopupController = PopupController
