@@ -36,7 +36,7 @@ tests_runner_file := build/tests/runner.html
 jstest_source_file := node_modules/jstest/jstest.js
 jstest_build_file := build/tests/jstest.js
 
-.PHONY: all setup clean coffee sass images manifest html libraries bundle test testrun
+.PHONY: all setup clean coffee sass images manifest html libraries bundle test test-files
 
 all: coffee sass images manifest html libraries bundle
 
@@ -48,9 +48,9 @@ clean:
 	rm -rf tmp/
 	rm -rf build/
 
-test: bundle $(tests_build_file) $(tests_runner_file) $(jstest_build_file)
+test-files: bundle $(tests_build_file) $(tests_runner_file) $(jstest_build_file)
 
-testrun: test
+test: test-files
 	$(testem) ci
 
 coffee: $(apps_coffee_build_files) $(bundle_coffee_build_files)
