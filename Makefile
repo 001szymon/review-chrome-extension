@@ -7,6 +7,9 @@ apps_coffee_build_files  := $(apps_coffee_source_files:src/apps/%.coffee=build/a
 bundle_coffee_source_files := $(wildcard src/javascripts/*.coffee)
 bundle_coffee_build_files  := $(bundle_coffee_source_files:src/javascripts/%.coffee=tmp/javascripts/%.js)
 
+tests_source_files := $(wildcard src/tests/*.coffee)
+tests_build_files  := $(tests_source_files:src/tests/%.coffee=tmp/tests/%.js)
+
 sass_source_files := src/stylesheets/main.scss
 sass_build_files := $(sass_source_files:src/%.scss=build/%.css)
 
@@ -27,7 +30,12 @@ libraries_build_files := $(jquery_build_file)
 
 bundle_build_file := build/javascripts/bundle.js
 
-.PHONY: all setup clean coffee sass images manifest html libraries bundle
+tests_build_file := build/tests/tests.js
+tests_runner_file := build/tests/runner.html
+jstest_source_file := node_modules/jstest/jstest.js
+jstest_build_file := build/tests/jstest.js
+
+.PHONY: all setup clean coffee sass images manifest html libraries bundle test
 
 all: coffee sass images manifest html libraries bundle
 
@@ -38,6 +46,8 @@ setup:
 clean:
 	rm -rf tmp/
 	rm -rf build/
+
+test: $(tests_build_file) $(tests_runner_file) $(jstest_build_file)
 
 coffee: $(apps_coffee_build_files) $(bundle_coffee_build_files)
 
@@ -59,8 +69,15 @@ build/apps/%.js: src/apps/%.coffee
 tmp/javascripts/%.js: src/javascripts/%.coffee
 	$(coffee) -co $(dir $@) $<
 
+tmp/tests/%.js: src/tests/%.coffee
+	$(coffee) -co $(dir $@) $<
+
 $(bundle_build_file): $(bundle_coffee_build_files)
 	mkdir -pv build/javascripts
+	cat $^ > $@
+
+$(tests_build_file): $(tests_build_files)
+	mkdir -pv build/tests
 	cat $^ > $@
 
 build/%.css: src/%.scss
@@ -80,5 +97,9 @@ build/%.html: src/%.html
 	cp $< $@
 
 $(jquery_build_file): $(jquery_source_file)
+	mkdir -pv build/vendor/
+	cp $< $@
+
+$(jstest_build_file): $(jstest_source_file)
 	mkdir -pv build/vendor/
 	cp $< $@

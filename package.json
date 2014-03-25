@@ -3,6 +3,7 @@
     "jquery": "~2.1.0"
   },
   "devDependencies": {
-    "coffee-script": "~1.7.0"
+    "coffee-script": "~1.7.0",
+    "jstest": "~1.0.0"
   }
 }
