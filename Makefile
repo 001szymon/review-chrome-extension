@@ -1,5 +1,6 @@
 coffee := node_modules/.bin/coffee
 sass := ruby_gems/wrappers/sass --cache-location tmp/sass-cache
+testem := ./node_modules/testem/testem.js
 
 apps_coffee_source_files := $(wildcard src/apps/**/*.coffee)
 apps_coffee_build_files  := $(apps_coffee_source_files:src/apps/%.coffee=build/apps/%.js)
@@ -35,7 +36,7 @@ tests_runner_file := build/tests/runner.html
 jstest_source_file := node_modules/jstest/jstest.js
 jstest_build_file := build/tests/jstest.js
 
-.PHONY: all setup clean coffee sass images manifest html libraries bundle test
+.PHONY: all setup clean coffee sass images manifest html libraries bundle test testrun
 
 all: coffee sass images manifest html libraries bundle
 
@@ -47,7 +48,10 @@ clean:
 	rm -rf tmp/
 	rm -rf build/
 
-test: $(tests_build_file) $(tests_runner_file) $(jstest_build_file)
+test: bundle $(tests_build_file) $(tests_runner_file) $(jstest_build_file)
+
+testrun: test
+	$(testem) ci
 
 coffee: $(apps_coffee_build_files) $(bundle_coffee_build_files)
 

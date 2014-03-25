@@ -1,0 +1,7 @@
+test_page: "build/tests/runner.html#testem"
+launch_in_dev:
+  - 'phantomjs'
+launch_in_ci:
+  - 'phantomjs'
+  - 'chrome'
+  - 'chrome canary'
