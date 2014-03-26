@@ -28,6 +28,8 @@ class OptionsController
 
   perform: ->
     @restoreOptions()
-    $('#save').on('click', => @saveOptions())
+    $('#save').on 'click', (e)=>
+      e.preventDefault()
+      @saveOptions()
 
 window.OptionsController = OptionsController
