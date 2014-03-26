@@ -1,6 +1,7 @@
 coffee := node_modules/.bin/coffee
 sass := ruby_gems/wrappers/sass --cache-location tmp/sass-cache
 testem := ./node_modules/testem/testem.js
+bower := ./node_modules/bower/bin/bower
 
 apps_coffee_source_files := $(wildcard src/apps/**/*.coffee)
 apps_coffee_build_files  := $(apps_coffee_source_files:src/apps/%.coffee=build/apps/%.js)
@@ -43,6 +44,7 @@ all: coffee sass images manifest html libraries bundle
 setup:
 	npm install
 	gem install --no-rdoc --no-ri sass -i ruby_gems
+	$(bower) install bootstrap
 
 clean:
 	rm -rf tmp/

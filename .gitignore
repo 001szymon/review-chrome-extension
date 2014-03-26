@@ -1,4 +1,5 @@
 node_modules
 ruby_gems
+bower_components
 build
 tmp
