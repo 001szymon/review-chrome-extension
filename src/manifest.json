@@ -17,6 +17,12 @@
     "default_popup": "apps/popup/index.html"
   },
 
+  "background": {
+    "page": "apps/background/index.html",
+    "persistent": false
+  },
+
+  "permissions": ["alarms"],
   "optional_permissions": ["http://*/", "https://*/"],
 
   "options_page": "apps/options/index.html",
