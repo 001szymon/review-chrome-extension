@@ -23,4 +23,15 @@ class BadgeController
       expired.push(date) if currentDate > (new Date(date))
     expired
 
+  updateBadge: (count)->
+    text = @formatBadge(count)
+    chrome.browserAction.setBadgeText(text: text)
+
+  formatBadge: (count)->
+    return "" if count == 0
+    String(count)
+
+  perform: ->
+    @refreshExpiredCount((count)=> @updateBadge(count))
+
 window.BadgeController = BadgeController
