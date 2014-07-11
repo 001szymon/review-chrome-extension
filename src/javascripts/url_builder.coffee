@@ -6,6 +6,9 @@ class UrlBuilder
   tradeCheckUrl: ->
     @decorate "api/v1/trade_check"
 
+  fuzzyUrl: ->
+    @decorate "api/v1/fuzzy"
+
   decorate: (url)->
     host = @optionsStorage.appUrl()
     token = @optionsStorage.appToken()
