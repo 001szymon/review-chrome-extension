@@ -1,5 +1,5 @@
 coffee := node_modules/.bin/coffee
-sass := ruby_gems/wrappers/sass --cache-location tmp/sass-cache
+sass := ruby_gems/bin/sass --cache-location tmp/sass-cache
 testem := ./node_modules/testem/testem.js
 bower := ./node_modules/bower/bin/bower
 
@@ -27,14 +27,17 @@ html_build_files := $(html_source_files:src/%.html=build/%.html)
 jquery_source_file := node_modules/jquery/dist/jquery.js
 jquery_build_file := build/vendor/jquery.js
 
+moment_source_file := node_modules/moment/moment.js
+moment_build_file := build/vendor/moment.js
+
 bootstrap_source_file := bower_components/bootstrap/dist/css/bootstrap.css
 bootstrap_build_file := build/vendor/bootstrap.css
 
 bootstrap_map_source_file := bower_components/bootstrap/dist/css/bootstrap.css.map
 bootstrap_map_build_file := build/vendor/bootstrap.css.map
 
-libraries_source_files := $(jquery_source_file) $(bootstrap_source_file) $(bootstrap_map_source_file)
-libraries_build_files := $(jquery_build_file) $(bootstrap_build_file) $(bootstrap_map_build_file)
+libraries_source_files := $(jquery_source_file) $(bootstrap_source_file) $(bootstrap_map_source_file) $(moment_source_file)
+libraries_build_files := $(jquery_build_file) $(bootstrap_build_file) $(bootstrap_map_build_file) $(moment_build_file)
 
 bundle_build_file := build/javascripts/bundle.js
 
@@ -109,6 +112,10 @@ build/%.html: src/%.html
 	cp $< $@
 
 $(jquery_build_file): $(jquery_source_file)
+	mkdir -pv build/vendor
+	cp $< $@
+
+$(moment_build_file): $(moment_source_file)
 	mkdir -pv build/vendor
 	cp $< $@
 

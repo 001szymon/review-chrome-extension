@@ -7,7 +7,7 @@ class PopupController
     $tableRow = $('<tr>')
     $.each [
       project['name'],
-      project['expiration_date'],
+      moment(project['expiration_date']).fromNow(),
       project['unreviewed_commits']['by_state']['pending'],
       project['unreviewed_commits']['by_state']['auto_rejected'],
     ], (_, value)=>
