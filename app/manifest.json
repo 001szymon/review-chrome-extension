@@ -1,0 +1,32 @@
+{
+  "name": "Code Review",
+  "description": "This extension allows for a quick commit-based code review via Github.",
+  "version": "0.3.0",
+
+  "icons": {
+    "16": "images/review-icon-16x16.png",
+    "48": "images/review-icon-48x48.png",
+    "128": "images/review-icon-128x128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+     "19": "images/review-icon-19x19.png",
+     "38": "images/review-icon-38x38.png"
+    },
+    "default_popup": "index.html"
+  },
+
+  "web_accessible_resources": [
+    "images/review-icon-128x128.png"
+  ],
+
+  "omnibox": {
+    "keyword": "rr"
+  },
+
+  "permissions": ["alarms", "notifications"],
+  "optional_permissions": ["http://*/", "https://*/"],
+
+  "manifest_version": 2
+}

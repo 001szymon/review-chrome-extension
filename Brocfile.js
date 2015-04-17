@@ -1,8 +1,17 @@
 /* global require, module */
 
+var mergeTrees = require('broccoli-merge-trees');
+var pickFiles = require('broccoli-static-compiler');
+
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
+
+var manifestFile = pickFiles('app', {
+  srcDir: '/',
+  files: ['manifest.json'],
+  destDir: '/'
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -17,4 +26,4 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-module.exports = app.toTree();
+module.exports = mergeTrees([app.toTree(), manifestFile]);
