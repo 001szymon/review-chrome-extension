@@ -6,6 +6,7 @@ var pickFiles = require('broccoli-static-compiler');
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
+app.import('bower_components/fuse.js/src/fuse.js');
 
 var manifestFile = pickFiles('app', {
   srcDir: '/',

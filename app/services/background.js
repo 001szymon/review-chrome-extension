@@ -1,5 +1,6 @@
 import Ember from 'ember';
 const chrome = window.chrome;
+const Fuse = window.Fuse;
 
 export default Ember.Service.extend({
   run (projects) {
@@ -13,7 +14,10 @@ export default Ember.Service.extend({
     );
   },
   suggestionsChangedListener (projects, text, suggest) {
-    suggest(this.transformProjectsToSuggestions(projects));
+    const suggestions = this.transformProjectsToSuggestions(projects);
+    const fuse = this.initFuse(suggestions);
+
+    suggest(fuse.search(text));
   },
   suggestionsEnteredListener (text) {
     this.navigate(text);
@@ -37,5 +41,19 @@ export default Ember.Service.extend({
     chrome.omnibox.setDefaultSuggestion({
       description: 'Search project: %s'
     });
+  },
+  initFuse (list = []) {
+    const options = {
+      caseSensitive: false,
+      includeScore: false,
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      keys: ["description"]
+    };
+
+    return new Fuse(list, options);
   }
 });
