@@ -44,5 +44,7 @@
   "optional_permissions": ["http://*/", "https://*/"],
 
   "options_page": "index.html#/options",
-  "manifest_version": 4
+  "manifest_version": 4,
+
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'"
 }
