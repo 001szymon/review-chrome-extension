@@ -4,4 +4,5 @@ export default DS.Model.extend({
   name: DS.attr(),
   token: DS.attr(),
   reviewUrl: DS.attr(),
+  stat: DS.belongsTo('stat', { async: true })
 });
