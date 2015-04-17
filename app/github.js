@@ -4,7 +4,7 @@ project = window.location.href.split("/")[4];
 chrome.runtime.sendMessage({commit: commit, project: project});
 
 chrome.runtime.onMessage.addListener(
-  function(r, sender, sendResponse) {
+  function(r) {
     but = $('.timeline-comment .form-actions button.btn-primary');
     if (r && r.state == "accepted") {
       but.before("<button class='btn btn-success disabled'><span class='octicon octicon-thumbsup' aria-hidden='true'></span> Accepted</button>");
