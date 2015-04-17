@@ -3,6 +3,7 @@ setTimeout(function() {
   project = window.location.href.split("/")[4];
 
   chrome.runtime.sendMessage({commit: commit, project: project}, function(r) {
+    console.log(r);
     if (r) {
       $.getJSON(r.url, function( data ) {
         but = $('.timeline-comment .form-actions button.btn-primary');
