@@ -14,12 +14,17 @@
      "19": "images/review-icon-19x19.png",
      "38": "images/review-icon-38x38.png"
     },
-    "default_popup": "index.html"
+    "default_popup": "index.html#popup"
   },
 
   "web_accessible_resources": [
     "images/review-icon-128x128.png"
   ],
+
+  "background": {
+    "page": "index.html#background",
+    "persistent": false
+  },
 
   "omnibox": {
     "keyword": "rr"
@@ -28,5 +33,6 @@
   "permissions": ["alarms", "notifications"],
   "optional_permissions": ["http://*/", "https://*/"],
 
-  "manifest_version": 2
+  "options_page": "index.html#options",
+  "manifest_version": 4
 }
