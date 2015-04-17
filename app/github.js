@@ -1,7 +1,3 @@
-//$('.timeline-comment .form-actions button.btn-primary')
-//  .before("<button class='btn btn-danger'><span class='octicon octicon-x' aria-hidden='true'></span> Rejected</button>")
-//  .before("<button class='btn btn-success'><span class='octicon octicon-check' aria-hidden='true'></span> Accepted</button>")
-
 setTimeout(function() {
   commit = window.location.href.split("/")[6];
   project = window.location.href.split("/")[4];
@@ -15,7 +11,7 @@ setTimeout(function() {
     } else {
       but.before("<button class='btn btn-info disabled'><span class='octicon octicon-sync' aria-hidden='true'></span> Pending</button><button class='btn btn-danger'><span class='octicon octicon-x' aria-hidden='true'></span> Reject</button><button class='btn btn-success'><span class='octicon octicon-check' aria-hidden='true'></span> Accept</button>");
     };
-    console.log(r);
-    console.log(chrome.runtime.lastError);
+    console.log({response: r});
+    console.log({lastError: chrome.runtime.lastError});
   });
 }, 200);
