@@ -31,8 +31,9 @@
 .project-counters {
   width: 70%;
 
-  & a {
+  .counter {
     margin: 0 5px 0 0;
+    cursor: default !important;
   }
 }
 
@@ -40,14 +41,14 @@
   width: 20%;
 }
 
-.label-pending {
+.counter.pending {
   background-color: #f89406;
 }
 
-.label-passed {
+.counter.passed {
   background-color: #333333;
 }
 
-.label-rejected {
+.counter.rejected {
   background-color: #b94a48;
 }

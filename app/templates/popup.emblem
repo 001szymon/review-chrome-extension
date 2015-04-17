@@ -4,11 +4,11 @@ ul.collection.project-list
       .project-name
         = project.name
       .project-counters
-        a.waves-effect.waves-light.btn-floating.label-pending href=project.reviewUrl target='_blank'
+        div.waves-effect.waves-light.btn-floating.counter.pending
           i: project.stat.pending
-        a.waves-effect.waves-light.btn-floating.label-passed href=project.reviewUrl target='_blank'
+        div.waves-effect.waves-light.btn-floating.counter.passed
           i: project.stat.passed
-        a.waves-effect.waves-light.btn-floating.label-rejected href=project.reviewUrl target='_blank'
+        div.waves-effect.waves-light.btn-floating.counter.rejected
           i: project.stat.rejected
       .project-open
         a.waves-effect.waves-light.btn-floating href=project.reviewUrl target='_blank'
