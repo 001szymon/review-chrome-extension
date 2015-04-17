@@ -4,8 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'review-chrome-extension',
     environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
+    baseURL: '/index.html',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
