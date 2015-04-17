@@ -3,12 +3,20 @@ const chrome = window.chrome;
 
 export default Ember.Service.extend({
   run (projects) {
+    this.resetDefaultSuggestion();
     chrome.omnibox.onInputChanged.addListener(
-      this.suggestionsListener.bind(this, projects)
+      this.suggestionsChangedListener.bind(this, projects)
+    );
+
+    chrome.omnibox.onInputEntered.addListener(
+      this.suggestionsEnteredListener.bind(this)
     );
   },
-  suggestionsListener (projects, text, suggest) {
+  suggestionsChangedListener (projects, text, suggest) {
     suggest(this.transformProjectsToSuggestions(projects));
+  },
+  suggestionsEnteredListener (text) {
+    this.navigate(text);
   },
   transformProjectsToSuggestions (projects) {
     return projects.toArray().map((project) => {
@@ -16,8 +24,18 @@ export default Ember.Service.extend({
       const reviewURL = `http://review.netguru.co/projects/${projectName}/commits`;
       return {
         content: reviewURL,
-        description: projectName
+        description: `review: ${projectName}`
       };
+    });
+  },
+  navigate (url) {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.update(tabs[0].id, {url: url});
+    });
+  },
+  resetDefaultSuggestion () {
+    chrome.omnibox.setDefaultSuggestion({
+      description: 'Search project: %s'
     });
   }
 });
