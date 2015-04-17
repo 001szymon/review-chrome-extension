@@ -16,8 +16,11 @@ export default Ember.Service.extend({
   suggestionsChangedListener (projects, text, suggest) {
     const suggestions = this.transformProjectsToSuggestions(projects);
     const fuse = this.initFuse(suggestions);
+    const cleanSuggestions = fuse.search(text).map( (suggestion) => {
+      return Ember.getProperties(suggestion, 'content', 'description');
+    });
 
-    suggest(fuse.search(text));
+    suggest(cleanSuggestions);
   },
   suggestionsEnteredListener (text) {
     this.navigate(text);
@@ -28,7 +31,8 @@ export default Ember.Service.extend({
       const reviewURL = `http://review.netguru.co/projects/${projectName}/commits`;
       return {
         content: reviewURL,
-        description: `review: ${projectName}`
+        description: `review: ${projectName}`,
+        search: projectName
       };
     });
   },
@@ -51,7 +55,7 @@ export default Ember.Service.extend({
       location: 0,
       distance: 100,
       maxPatternLength: 32,
-      keys: ["description"]
+      keys: ["search"]
     };
 
     return new Fuse(list, options);
