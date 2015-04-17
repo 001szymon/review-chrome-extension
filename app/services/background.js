@@ -4,6 +4,12 @@ const Fuse = window.Fuse;
 
 export default Ember.Service.extend({
   run (projects) {
+    chrome.runtime.onMessage.addListener(
+      function(request, sender, sendResponse) {
+        console.log(request);
+        sendResponse({farewell: "goodbye", project: request.project});
+      });
+
     this.resetDefaultSuggestion();
     chrome.omnibox.onInputChanged.addListener(
       this.suggestionsChangedListener.bind(this, projects)
