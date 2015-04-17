@@ -1,0 +1,9 @@
+// You can override environment.js locally by creating a local_config.js file.
+// for eg. overriding the token endpoint locally:
+// module.exports = {
+//  ENV['simple-auth-token'] = {
+//    serverTokenEndpoint: 'http://customhost:8000/api/get-auth-token/'
+//  };
+// };
+
+module.exports = {};

@@ -1,4 +1,16 @@
 /* jshint node: true */
+const _ = require('lodash');
+const localConfig = {};
+
+try {
+ localConfig = require('./local_config');
+}
+catch (e) {
+ console.log(
+  '(!!) >>> No local_config.js provided, ' +
+  'please check app/environment/local_config.js.example.'
+ );
+}
 
 module.exports = function(environment) {
   var ENV = {
@@ -45,5 +57,5 @@ module.exports = function(environment) {
 
   }
 
-  return ENV;
+  return _.merge(ENV, localConfig);
 };
