@@ -8,5 +8,8 @@ export default Ember.Service.extend({
     return Ember.$.ajax(url, 'GET').then(function(response) {
       return { status: response.state };
     });
+  },
+  url: function(id, token) {
+    return this.get('urlTemplate').fmt(id, token);
   }
 });

@@ -14,14 +14,19 @@ export default Ember.Route.extend({
     if (!chrome)
       return;
     var commitLookup = this.get('commitLookup');
+    var self = this;
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+      console.log(sender);
+      self.set('sender', sender);
       console.log(request);
       var id = request.commit;
       var token = projects.findBy('name', request.project).get('token');
       console.log({ id, token });
-      commitLookup.find(id, token).then(status => {
-        sendResponse({ state: status });
-      });
+      sendResponse({ url: commitLookup.url() });
+      // commitLookup.find(id, token).then(function(status) {
+      //   sendResponse({ state: status });
+      //   console.log('response sent', status);
+      // });
     });
   }
 });
