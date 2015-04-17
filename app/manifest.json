@@ -17,6 +17,13 @@
     "default_popup": "index.html#/popup"
   },
 
+  "content_scripts": [
+     {
+       "matches": ["https://github.com/*"],
+       "js": ["github.js"]
+     }
+   ],
+
   "web_accessible_resources": [
     "images/review-icon-128x128.png"
   ],
@@ -31,8 +38,6 @@
   },
 
   "permissions": [
-    "https://github.com/",
-    "activeTab",
     "alarms",
     "notifications"
   ],

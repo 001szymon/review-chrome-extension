@@ -9,7 +9,7 @@ var app = new EmberApp();
 
 var manifestFile = pickFiles('app', {
   srcDir: '/',
-  files: ['manifest.json'],
+  files: ['manifest.json', 'github.js'],
   destDir: '/'
 });
 
