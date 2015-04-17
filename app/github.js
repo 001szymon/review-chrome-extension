@@ -2,6 +2,9 @@ setTimeout(function() {
   commit = window.location.href.split("/")[6];
   project = window.location.href.split("/")[4];
 
+  console.log(commit);
+  console.log(project);
+
   chrome.runtime.sendMessage({commit: commit, project: project}, function(r) {
     console.log(r);
     if (r) {
