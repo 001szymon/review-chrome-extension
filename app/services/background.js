@@ -28,7 +28,7 @@ export default Ember.Service.extend({
   transformProjectsToSuggestions (projects) {
     return projects.toArray().map((project) => {
       const projectName = project.get('name');
-      const reviewURL = `http://review.netguru.co/projects/${projectName}/commits`;
+      const reviewURL = project.get('reviewUrl');
       return {
         content: reviewURL,
         description: `review: ${projectName}`,
