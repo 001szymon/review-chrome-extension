@@ -1,5 +1,8 @@
+.input-field
+  = input value=searchQuery id="filter_projects"
+  label for="filter_projects" Filter projects..
 ul.collection.project-list
-  each project in projects
+  each project in filteredProjects
     li.collection-item.project-row
       .project-name
         = project.name
