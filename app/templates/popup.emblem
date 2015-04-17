@@ -1,5 +1,5 @@
 .input-field
-  = input value=searchQuery id="filter_projects"
+  = input value=searchQuery id="filter_projects" autofocus=true
   label for="filter_projects" Filter projects..
 ul.collection.project-list
   each project in filteredProjects
