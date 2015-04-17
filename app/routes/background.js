@@ -22,7 +22,7 @@ export default Ember.Route.extend({
       var id = request.commit;
       var token = projects.findBy('name', request.project).get('token');
       console.log({ id, token });
-      sendResponse({ url: commitLookup.url() });
+      sendResponse({ url: commitLookup.url(id, token) });
       // commitLookup.find(id, token).then(function(status) {
       //   sendResponse({ state: status });
       //   console.log('response sent', status);
