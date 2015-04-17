@@ -10,7 +10,7 @@ app.import('bower_components/fuse.js/src/fuse.js');
 
 var manifestFile = pickFiles('app', {
   srcDir: '/',
-  files: ['manifest.json', 'github.js'],
+  files: ['manifest.json', 'github.js', 'jquery-2.1.3.min.js'],
   destDir: '/'
 });
 
