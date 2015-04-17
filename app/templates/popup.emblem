@@ -4,3 +4,7 @@ table
       tr
         td= project.name
         td= project.token
+        td
+          a.waves-effect.waves-light.btn href=project.reviewUrl target='_blank'
+            i.mdi-action-launch.left
+            | Go to Review
