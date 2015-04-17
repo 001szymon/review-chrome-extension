@@ -1,0 +1,53 @@
+.project-list {
+  width: 400px;
+}
+
+.project-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.project-item {
+  margin: 0 15px 0 0;
+
+  &:last-child {
+    margin: 0 0 0 0;
+  }
+}
+
+.project-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: middle;
+  font-size: 20px;
+  width: 100%;
+}
+
+.project-counters {
+  width: 70%;
+
+  & a {
+    margin: 0 5px 0 0;
+  }
+}
+
+.project-open {
+  width: 20%;
+}
+
+.label-pending {
+  background-color: #f89406;
+}
+
+.label-passed {
+  background-color: #333333;
+}
+
+.label-rejected {
+  background-color: #b94a48;
+}

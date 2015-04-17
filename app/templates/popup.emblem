@@ -1,10 +1,15 @@
-table
-  tbody
-    each project in projects
-      tr
-        td= project.name
-        td= project.token
-        td
-          a.waves-effect.waves-light.btn href=project.reviewUrl target='_blank'
-            i.mdi-action-launch.left
-            | Go to Review
+ul.collection.project-list
+  each project in projects
+    li.collection-item.project-row
+      .project-name
+        = project.name
+      .project-counters
+        a.waves-effect.waves-light.btn-floating.label-pending href=project.reviewUrl target='_blank'
+          i: project.stat.pending
+        a.waves-effect.waves-light.btn-floating.label-passed href=project.reviewUrl target='_blank'
+          i: project.stat.passed
+        a.waves-effect.waves-light.btn-floating.label-rejected href=project.reviewUrl target='_blank'
+          i: project.stat.rejected
+      .project-open
+        a.waves-effect.waves-light.btn-floating href=project.reviewUrl target='_blank'
+          i.mdi-action-launch.left
