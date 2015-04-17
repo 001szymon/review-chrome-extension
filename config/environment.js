@@ -17,7 +17,6 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'review-chrome-extension',
     environment: environment,
-    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://YOUR-FIREBASE-NAME.firebaseio.com/',
     baseURL: '/index.html',
     locationType: 'hash',
