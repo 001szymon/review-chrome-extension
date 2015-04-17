@@ -15,7 +15,7 @@ export default Ember.Route.extend({
       return;
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       console.log(request);
-      sendResponse({ status: "accepted" });
+      sendResponse({ state: "accepted" });
     });
   }
 });
