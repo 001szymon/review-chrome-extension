@@ -14,7 +14,7 @@
      "19": "images/review-icon-19x19.png",
      "38": "images/review-icon-38x38.png"
     },
-    "default_popup": "index.html#popup"
+    "default_popup": "index.html#/popup"
   },
 
   "web_accessible_resources": [
@@ -22,7 +22,7 @@
   ],
 
   "background": {
-    "page": "index.html#background",
+    "page": "index.html#/background",
     "persistent": false
   },
 
@@ -33,6 +33,6 @@
   "permissions": ["alarms", "notifications"],
   "optional_permissions": ["http://*/", "https://*/"],
 
-  "options_page": "index.html#options",
+  "options_page": "index.html#/options",
   "manifest_version": 4
 }
