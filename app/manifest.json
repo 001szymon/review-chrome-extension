@@ -30,7 +30,12 @@
     "keyword": "rr"
   },
 
-  "permissions": ["alarms", "notifications"],
+  "permissions": [
+    "https://github.com/",
+    "activeTab",
+    "alarms",
+    "notifications"
+  ],
   "optional_permissions": ["http://*/", "https://*/"],
 
   "options_page": "index.html#/options",
