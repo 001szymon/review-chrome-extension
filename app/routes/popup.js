@@ -11,6 +11,15 @@ export default Ember.Route.extend(KeyboardShortcuts, {
 
       $filterInput.focus();
     },
+    clearSearch() {
+      const $filterInput = Ember.$('#filter_projects');
+      if(!$filterInput) {
+        return;
+      }
+
+      this.set('controller.searchQuery', '');
+      $filterInput.blur();
+    },
     pressDown() {
       // select items in the future
     },
@@ -20,6 +29,7 @@ export default Ember.Route.extend(KeyboardShortcuts, {
   },
   keyboardShortcuts: {
     'command+l': 'focusSearch',
+    'command+k': 'clearSearch',
     'down': 'pressDown',
     'up': 'pressUp'
   },

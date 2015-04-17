@@ -4,18 +4,6 @@ const Fuse = window.Fuse;
 export default Ember.Controller.extend({
   searchQuery: '',
 
-  actions: {
-    didPressEscape() {
-      const $filterInput = Ember.$('#filter_projects');
-      if(!$filterInput) {
-        return;
-      }
-
-      this.set('searchQuery', '');
-      $filterInput.blur();
-    }
-  },
-
   projects: Ember.computed.alias('model'),
 
   filteredProjects: Ember.computed('projects.[]', 'searchQuery', function() {
