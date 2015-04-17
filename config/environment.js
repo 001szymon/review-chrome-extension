@@ -1,16 +1,15 @@
 /* jshint node: true */
 const _ = require('lodash');
+const localConfig = {};
 
 try {
- var localConfig = require('./local_config');
+ localConfig = require('./local_config');
 }
 catch (e) {
  console.log(
   '(!!) >>> No local_config.js provided, ' +
   'please check app/environment/local_config.js.example.'
  );
-
- var localConfig = {};
 }
 
 module.exports = function(environment) {
