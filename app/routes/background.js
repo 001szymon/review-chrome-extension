@@ -7,15 +7,21 @@ export default Ember.Route.extend({
     return this.store.find('project');
   },
   afterModel (projects) {
-    this.setupListener();
+    this.setupListener(projects);
     this.get('background').run(projects);
   },
-  setupListener () {
+  setupListener (projects) {
     if (!chrome)
       return;
+    var commitLookup = this.get('commitLookup');
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       console.log(request);
-      sendResponse({ state: "accepted" });
+      var id = request.commit;
+      var token = projects.findBy('name', request.project).get('token');
+      console.log({ id, token });
+      commitLookup.find(id, token).then(status => {
+        sendResponse({ state: status });
+      });
     });
   }
 });
